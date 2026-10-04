@@ -1,0 +1,15 @@
+[project]
+name = "duckdb-20-testing"
+version = "0.1.0"
+description = "DuckDB 2.0, Quack, DuckLake, PostgreSQL, and RustFS proof of concept"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "duckdb==2.0.0.dev2610011535",
+    "pytz>=2026.5",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.10",
+]

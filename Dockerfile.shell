@@ -1,0 +1,15 @@
+FROM debian:trixie-slim
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends bash ca-certificates curl unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL https://install.duckdb.org | DUCKDB_VERSION=2.0.0-alpha43763 bash \
+    && ln -s /root/.duckdb/cli/latest/duckdb /usr/local/bin/duckdb \
+    && duckdb -unsigned -c "INSTALL httpfs; INSTALL quack;"
+
+COPY connect-quack.sh /usr/local/bin/connect-quack
+RUN chmod +x /usr/local/bin/connect-quack
+
+WORKDIR /workspace
+CMD ["sleep", "infinity"]
